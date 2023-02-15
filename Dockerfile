@@ -14,10 +14,12 @@ RUN npm install -g npm@8.1.2
 
 RUN npm install -g @medusajs/medusa-cli@latest
 
-RUN npm install
+RUN yarn --silent
 
 COPY . .
 
+RUN medusa migrations run
+
 EXPOSE 9000
 
-ENTRYPOINT ["./develop.sh"]
+CMD ["medusa","start"]
