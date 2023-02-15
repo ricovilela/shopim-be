@@ -10,11 +10,11 @@ services:
       - postgres
       - redis
     environment:
-      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
-      REDIS_URL: redis://redis
-      NODE_ENV: development
-      JWT_SECRET: something
-      COOKIE_SECRET: something
+      DATABASE_URL: postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}:${PGPORT}/${PGDATABASE}
+      REDIS_URL: redis://${REDISUSER}:${REDISPASSWORD}@${REDISHOST}:${REDISPORT}
+      NODE_ENV: production
+      JWT_SECRET: StarLigh2023!@
+      COOKIE_SECRET: StarLigh2023!@
       PORT: 9000
     ports:
       - "9000:9000"
@@ -27,9 +27,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: medusa-docker
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
 
   redis:
     image: redis
